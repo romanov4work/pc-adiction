@@ -1,0 +1,17 @@
+# Railway Deployment Configuration
+
+services:
+  # Frontend - Static Site
+  frontend:
+    name: pc-adiction-frontend
+    type: static
+    staticPublishPath: ./src
+
+  # Backend - Whisper API
+  backend:
+    name: pc-adiction-api
+    type: web
+    buildCommand: pip install -r requirements.txt
+    startCommand: python server/whisper_server.py
+    healthcheckPath: /health
+    healthcheckTimeout: 100
