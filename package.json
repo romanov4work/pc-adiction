@@ -1,0 +1,13 @@
+{
+  "name": "pc-adiction",
+  "version": "1.0.0",
+  "description": "Обучающая игра для развития дикции у детей 6-11 лет",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "python -m http.server 8000"
+  },
+  "keywords": ["дикция", "дети", "обучение", "игра"],
+  "author": "",
+  "license": "MIT"
+}

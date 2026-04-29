@@ -1,0 +1,89 @@
+/* Базовые стили для kids-friendly интерфейса */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#app {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px;
+}
+
+header {
+    background: white;
+    padding: 20px;
+    border-radius: 20px 20px 0 0;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    color: #667eea;
+    font-size: 2.5rem;
+}
+
+main {
+    background: white;
+    padding: 40px;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    min-height: 400px;
+}
+
+.welcome-screen {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.welcome-screen h2 {
+    font-size: 2rem;
+    color: #667eea;
+    margin-bottom: 20px;
+}
+
+.welcome-screen p {
+    font-size: 1.3rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+    header h1 { font-size: 1.8rem; }
+    .welcome-screen h2 { font-size: 1.5rem; }
+    .welcome-screen p { font-size: 1.1rem; }
+    .btn-primary { font-size: 1.2rem; padding: 12px 30px; }
+}

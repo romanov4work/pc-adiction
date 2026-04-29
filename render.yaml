@@ -1,0 +1,20 @@
+# Render Configuration
+# Автоматический деплой фронтенда и бэкенда
+
+services:
+  # Backend - Whisper API Server
+  - type: web
+    name: pc-adiction-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python server/whisper_server.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+
+  # Frontend - Static Site
+  - type: web
+    name: pc-adiction-frontend
+    env: static
+    buildCommand: echo "No build needed"
+    staticPublishPath: ./src

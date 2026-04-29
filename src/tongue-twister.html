@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Скороговорка - Прокачай Речь</title>
+    <link rel="stylesheet" href="styles/tongue-twister.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Шапка -->
+        <header>
+            <div class="header-content">
+                <h1>🎤 Скороговорка</h1>
+                <button id="back-btn" class="btn-back">← Назад</button>
+            </div>
+        </header>
+
+        <!-- Основной контент -->
+        <main id="game-container">
+
+            <!-- Экран 1: Инструкция -->
+            <div id="instruction-screen" class="screen active">
+                <div class="instruction-box">
+                    <h2>Давай потренируем речь! 🎯</h2>
+                    <p class="instruction-text">
+                        Я покажу тебе скороговорку.<br>
+                        Послушай её, а потом повтори!
+                    </p>
+                    <div class="cat-helper">
+                        <div class="cat-avatar">🐱</div>
+                        <div class="cat-speech">Привет! Я помогу тебе!</div>
+                    </div>
+                    <button id="start-game-btn" class="btn-primary btn-large">Начать!</button>
+                </div>
+            </div>
+
+            <!-- Экран 2: Показ скороговорки -->
+            <div id="display-screen" class="screen">
+                <div class="tongue-twister-box">
+                    <h3>Повтори за мной:</h3>
+                    <div class="tongue-twister-text" id="tongue-twister-text">
+                        От топота копыт<br>
+                        пыль по полю летит
+                    </div>
+
+                    <div class="audio-controls">
+                        <button id="play-audio-btn" class="btn-audio">
+                            <span class="audio-icon">🔊</span>
+                            <span>Послушать</span>
+                        </button>
+                        <div id="audio-playing" class="audio-indicator hidden">
+                            <span class="pulse"></span>
+                            Слушаю...
+                        </div>
+                    </div>
+
+                    <div class="goals-info">
+                        <div class="goal-item">
+                            <span class="goal-icon">⏱️</span>
+                            <span>Цель: 3 секунды</span>
+                        </div>
+                        <div class="goal-item">
+                            <span class="goal-icon">🎯</span>
+                            <span>Четко и быстро!</span>
+                        </div>
+                    </div>
+
+                    <button id="ready-record-btn" class="btn-primary btn-large">Готов записать!</button>
+                </div>
+
+                <div class="cat-helper-bottom">
+                    <div class="cat-avatar">🐱</div>
+                    <div class="cat-speech">Послушай внимательно!</div>
+                </div>
+            </div>
+
+            <!-- Экран 3: Запись -->
+            <div id="record-screen" class="screen">
+                <div class="record-box">
+                    <h3>Скажи скороговорку!</h3>
+
+                    <div class="tongue-twister-reminder">
+                        От топота копыт пыль по полю летит
+                    </div>
+
+                    <div class="record-visual">
+                        <div id="record-animation" class="record-circle">
+                            <div class="pulse-ring"></div>
+                            <div class="pulse-ring delay-1"></div>
+                            <div class="pulse-ring delay-2"></div>
+                            <span class="record-icon">🎤</span>
+                        </div>
+                        <div id="record-status" class="record-status">Нажми кнопку</div>
+                        <div id="record-timer" class="record-timer hidden">0.0с</div>
+                    </div>
+
+                    <button id="start-record-btn" class="btn-record btn-large">
+                        <span class="btn-icon">⏺️</span>
+                        Записать голос
+                    </button>
+                    <button id="stop-record-btn" class="btn-stop btn-large hidden">
+                        <span class="btn-icon">⏹️</span>
+                        Остановить
+                    </button>
+                </div>
+
+                <div class="cat-helper-bottom">
+                    <div class="cat-avatar">🐱</div>
+                    <div class="cat-speech" id="cat-record-text">Говори четко и быстро!</div>
+                </div>
+            </div>
+
+            <!-- Экран 4: Анализ (загрузка) -->
+            <div id="analyzing-screen" class="screen">
+                <div class="analyzing-box">
+                    <div class="loader">
+                        <div class="spinner"></div>
+                    </div>
+                    <h3>Анализирую твою речь...</h3>
+                    <p class="analyzing-text">Подожди немного! ⏳</p>
+                </div>
+
+                <div class="cat-helper-bottom">
+                    <div class="cat-avatar">🐱</div>
+                    <div class="cat-speech">Сейчас проверю!</div>
+                </div>
+            </div>
+
+            <!-- Экран 5: Результаты -->
+            <div id="results-screen" class="screen">
+                <div class="results-box">
+                    <h2 id="results-title">Отличная работа! 🎉</h2>
+
+                    <div class="results-grid">
+                        <!-- Время -->
+                        <div class="result-card">
+                            <div class="result-icon">⏱️</div>
+                            <div class="result-label">Твое время</div>
+                            <div class="result-value" id="result-time">2.5с</div>
+                            <div class="result-goal" id="result-time-goal">Цель: 3.0с ✅</div>
+                        </div>
+
+                        <!-- Четкость -->
+                        <div class="result-card">
+                            <div class="result-icon">🎯</div>
+                            <div class="result-label">Четкость</div>
+                            <div class="result-value" id="result-clarity">95%</div>
+                            <div class="stars" id="result-stars">
+                                ⭐⭐⭐
+                            </div>
+                        </div>
+
+                        <!-- Точность -->
+                        <div class="result-card">
+                            <div class="result-icon">✅</div>
+                            <div class="result-label">Правильность</div>
+                            <div class="result-value" id="result-accuracy">100%</div>
+                            <div class="result-subtitle">Все слова верны!</div>
+                        </div>
+                    </div>
+
+                    <!-- Что сказал ребенок -->
+                    <div class="transcription-box">
+                        <h4>Ты сказал:</h4>
+                        <p id="transcription-text" class="transcription-text">
+                            "от топота копыт пыль по полю летит"
+                        </p>
+                    </div>
+
+                    <!-- Награда -->
+                    <div class="reward-box" id="reward-box">
+                        <div class="reward-animation">🎊</div>
+                        <p class="reward-text">Ты заработал 10 монет! 🪙</p>
+                    </div>
+
+                    <!-- Кнопки -->
+                    <div class="results-actions">
+                        <button id="try-again-btn" class="btn-secondary">🔄 Попробовать еще раз</button>
+                        <button id="next-level-btn" class="btn-primary">➡️ Следующая скороговорка</button>
+                    </div>
+                </div>
+
+                <div class="cat-helper-bottom">
+                    <div class="cat-avatar happy">🐱</div>
+                    <div class="cat-speech" id="cat-result-text">Ты молодец!</div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="tongue-twister.js"></script>
+</body>
+</html>
